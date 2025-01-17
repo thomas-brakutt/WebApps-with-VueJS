@@ -23,7 +23,7 @@
         <div id="app" class="inside">
             <!-- :id = Attribute-binding -> id wird erstellt aus dem Text der Headline mit .replace Methode.
               = entfernt alle Leerzeichen und ersetzt sie mit "-" + .toLowerCase() Methode = alle buchstaben klein-->
-            <h1 :id="headline.replaceAll(' ','-').toLowerCase()">{{ headline }}</h1>
+            <h1 :id="headline.trim().replaceAll(' ','-').toLowerCase()">{{ headline }}</h1>
             <p>
                 Directives are special attributes with the <code>v-</code> prefix.
                 Directive attribute values are expected to be
