@@ -22,14 +22,19 @@
     <main>
         <div id="app" class="inside">
             <nav>
-                <button v-on:"click" class="btn btn-a">A</button>
-                <button class="btn btn-b">B</button>
-                <button class="btn btn-c">C</button>
+                <!-- durch click auf Btn A/B/C wird "activeLetter" in Vue-JS-Instanz mit dem jeweiligen Buchstaben aktualisiert
+                     class-binding (für Btn und div) wird dann aktiviert mit : (=if -> = true/false) wenn die Bedingung stimmt"-->
+                <button v-on:click="activeLetter = 'A' " :class="{ 'btn-active' : activeLetter === 'A' }"
+                    class="btn btn-a">A</button>
+                <button @:click="activeLetter = 'B' " :class="{ 'btn-active' : activeLetter === 'B' }"
+                    class="btn btn-b">B</button>
+                <button @:click="activeLetter = 'C' " :class="{ 'btn-active' : activeLetter === 'C' }"
+                    class="btn btn-c">C</button>
             </nav>
             <main>
-                <div class="letter letter-a">A</div>
-                <div class="letter letter-b">B</div>
-                <div class="letter letter-c">C</div>
+                <div :class="{'letter-active' : activeLetter === 'A' }" class="letter letter-a">A</div>
+                <div :class="{'letter-active' : activeLetter === 'B' }" class="letter letter-b">B</div>
+                <div :class="{'letter-active' : activeLetter === 'C' }" class="letter letter-c">C</div>
             </main>
         </div>
     </main>
