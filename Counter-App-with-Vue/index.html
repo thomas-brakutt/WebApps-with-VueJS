@@ -16,9 +16,10 @@
                 <h1>Counter</h1>
                 <small>(click the white area)</small>
             </div>
-            <button>Reset</button>
+            <button v-on:click="count = '0'">Reset</button>
         </header>
-        <main>
+        <main v-on:click="count++" :style="{ backgroundSize: 'var(--counter, ' + count + '%) 100%' }">
+            <!-- oder: :style="{ backgroundSize: `var(--counter, ${count}%) 100%` }" -->
             <label id="counter">{{ count }}</label>
         </main>
     </div>
