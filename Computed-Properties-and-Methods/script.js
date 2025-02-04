@@ -547,4 +547,84 @@ Vue.createApp({
       ],
     };
   },
+  computed: {
+    tableColumnHeadNames() {
+      const validKeys = [
+        "title",
+        "isbn",
+        "author",
+        "publisher",
+        "price",
+        "numPages",
+      ];
+      return validKeys;
+    },
+
+    // funktion zum filtern der Bücher für publisher O'Reilly Media
+    filteredBooks() {
+      // leeres Array zum einfügen der passenden Bücher
+      let result = [];
+      // alle Bücher in books durchlaufen lassen
+      for (let i = 0; i < this.books.length; i++) {
+        // Das aktuelle Buch in einer Variable speichern
+        let book = this.books[i];
+        // Überprüfen, ob der Publisher "O'Reilly Media" ist
+        if (book.publisher === "O'Reilly Media") {
+          // Falls ja, wird das Buch zu result hinzugefügt
+          result.push(book);
+        }
+      }
+      // array mit gefilterten Büchern zurückgeben
+      return result;
+
+      /* andere Möglichkeiten:
+
+- mit forEach Schleife:
+
+filteredBooks() {
+  let result = [];
+  this.books.forEach(function(book) {
+    if (book.publisher === "O'Reilly Media") {
+      result.push(book);
+    }
+  });
+  return result;
+}
+
+- Filterfunktion:
+
+filteredBooks() {
+  return this.books.filter((book) => book.publisher === "O'Reilly Media");
+}
+*/
+    },
+  },
+
+  methods: {
+    discountPrice(price) {
+      // Entferne das Dollarzeichen aus dem Preis und erhalte nur die Zahl als Text
+      let priceText = price.replace("$", "");
+
+      // Wandle den Text in eine Zahl um
+      let originalPrice = parseFloat(priceText);
+
+      // Berechne 80% des Originalpreises (das entspricht einem 20% Rabatt)
+      // Preis mit 0.8 multipliziert (da 100% - 20% = 80%)
+      let discountedPrice = originalPrice * 0.8;
+
+      // Runde den rabattierten Preis auf zwei Nachkommastellen
+      let formattedPrice = discountedPrice.toFixed(2);
+
+      // Füge das Dollarzeichen wieder hinzu und gebe den neuen Preis zurück
+      return "$" + formattedPrice;
+
+      /*
+      andere Methode:
+      discountPrice(price) {
+      const num = parseFloat(price.replace("$", ""));
+      const discounted = num * 0.8;
+      return "$" + discounted.toFixed(2);
+      }  */
+    },
+  },
 }).mount("#app");
