@@ -30,7 +30,7 @@
             <ul class="fruit-basket">
                 <li v-for="fruit in fruitBasket" :key="fruit" class="fruit-basket--item">
                     <span>{{ fruit }}</span>
-                    <button>Remove</button>
+                    <button v-on:click="removeFruit(fruit)">Remove</button>
                 </li>
             </ul>
         </div>
