@@ -9,24 +9,27 @@
 </head>
 
 <body>
-    <header>
-        <form>
-            <label for="red">red</label>
-            <input id="red" type="range" step="1" min="0" max="255" value="255">
-            <label for="green">green</label>
-            <input id="green" type="range" step="1" min="0" max="255" value="105">
-            <label for="blue">blue</label>
-            <input id="blue" type="range" step="1" min="0" max="255" value="180">
-        </form>
-        <div>
-            <p></p>
-        </div>
-    </header>
-    <main>
-    </main>
+    <div id="app">
+        <header>
+            <form>
+                <label for="red">red</label>
+                <input id="red" type="range" step="1" min="0" max="255" v-model="red">
+                <label for="green">green</label>
+                <input id="green" type="range" step="1" min="0" max="255" v-model="green">
+                <label for="blue">blue</label>
+                <input id="blue" type="range" step="1" min="0" max="255" v-model="blue">
+            </form>
+            <div>
+                <p> {{ color }} </p>
+            </div>
+        </header>
+        <main :style="{ backgroundColor: color }">
+        </main>
+    </div>
 
 
 
+    <script src="https://unpkg.com/vue@3"></script>
     <script src="script.js"></script>
 </body>
 

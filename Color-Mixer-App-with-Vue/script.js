@@ -1,3 +1,4 @@
+/*
 const red = document.querySelector("#red"); // Zugriff auf den roten Slider
 const green = document.querySelector("#green"); // Zugriff auf den grünen Slider
 const blue = document.querySelector("#blue"); // Zugriff auf den blauen Slider
@@ -29,3 +30,21 @@ green.addEventListener("input", () => {
 blue.addEventListener("input", () => {
   mainColor();
 });
+
+*/
+
+Vue.createApp({
+  data() {
+    return {
+      red: 255,
+      green: 105,
+      blue: 180,
+    };
+  },
+  computed: {
+    color() {
+      return "rgb(" + this.red + ", " + this.green + ", " + this.blue + ")";
+      // oder: return `rgb(${this.red}, ${this.green}, ${this.blue})`;
+    },
+  },
+}).mount("#app");
