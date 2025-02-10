@@ -4,39 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App with State-Management</title>
+    <title>Todo App mit VueJS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="appContainer">
 
-    <head>
-        <h1>Todo App</h1>
-    </head>
-    <main>
-        <form>
-            <label for="all">All</label>
-            <input for="all" type="radio" class="filter" name="filter" id="all">
-            <br>
-            <label for="open">Open</label>
-            <input for="open" type="radio" class="filter" name="filter" id="open">
-            <br>
-            <label for="done">Done</label>
-            <input for="done" type="radio" class="filter" name="filter" id="done">
-            <br>
-            <button id="removeBtn">Remove done Todos</button>
-            <br>
-            <input placeholder="Whats up?" type="text" id="inputField">
-            <button id="addBtn">Add</button>
-            <span id="error"></span>
+        <header class="header">
+            <h1 class="header__title">Todo App</h1>
+        </header>
+        <main class="main">
+            <div id="app">
+                <h2>Filter & Options</h2>
+                <form class="radio-container" @submit.prevent>
+                    <div class="filterAndcheckbox">
+                        <label for="all">All</label>
+                        <input class="radio-button filter-and-options" type="radio" name="filter" value="all" id="all"
+                            v-model="filter">
+                    </div>
+                    <div class="filterAndcheckbox">
+                        <label for="open">Open</label>
+                        <input class="radio-button filter-and-options" type="radio" name="filter" value="open" id="open"
+                            v-model="filter">
+                    </div>
+                    <div class="filterAndcheckbox">
+                        <label for="done">Done</label>
+                        <input class="radio-button filter-and-options" type="radio" name="filter" value="done" id="done"
+                            v-model="filter">
+                    </div>
+                </form>
 
-        </form>
-        <ul id="ul">
-            <li>
+                <form @submit.prevent class="btn-input-form-container">
+                    <button class="button" type="button" v-on:click="removeDone">Remove done Todos</button>
 
-            </li>
-        </ul>
-    </main>
+                    <input class="todo-input todo-input__input" placeholder="Whats up?" type="text" v-model="newTodo"
+                        @keyup.enter="addTodo">
+                    <button class="button add-button" type="button" v-on:click="addTodo">Add</button>
+                    <span> {{ error }} </span>
+
+                </form>
+                <h2>My Todos</h2>
+                <ul>
+                    <li class="todo-item " v-for="(todo, index) in filteredTodos" :key="index">
+                        <span :class="{ done: todo.done }">{{ todo.text }}</span>
+                        <input class="todo-item__checkbox" type="checkbox" v-model="todo.done" />
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
     <script src="script.js"></script>
 </body>
 
